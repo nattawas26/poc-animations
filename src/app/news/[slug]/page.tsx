@@ -3,7 +3,7 @@ import { newsItems } from '@/libs/data'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import { NewsDetailProvider } from '@/components/modules/news-detail/context'
-import { NextArticle } from '@/components/modules/news-detail/next-article'
+import { NextArticleCard } from '@/components/modules/news-detail/next-article-card'
 import { NextArticleLink } from '@/components/modules/news-detail/next-article-link'
 
 type PageProps = {
@@ -47,10 +47,11 @@ export default async function NewsDetail({ params }: PageProps) {
         </div>
       </article>
       {nextItemData ? (
-        <NextArticle
+        <NextArticleCard
           title={nextItemData.title}
           date={nextItemData.date}
           cover={nextItemData.cover}
+          slug={nextItemData.slug}
         />
       ) : null}
     </NewsDetailProvider>

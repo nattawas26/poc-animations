@@ -4,6 +4,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --ease-cs-1: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @theme inline {
@@ -11,6 +12,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --ease-cs-1: var(--ease-cs-1);
 }
 
 /* @media (prefers-color-scheme: dark) {
