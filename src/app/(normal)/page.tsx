@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ScrollProvider } from '@/components/modules/home/context'
-import { TestScrollRef } from '@/components/modules/home/test-scroll-ref'
-import { TestScrollAnimate } from '@/components/modules/home/test-scroll-animate'
+// import { TestScrollRef } from '@/components/modules/home/test-scroll-ref'
+// import { TestScrollAnimate } from '@/components/modules/home/test-scroll-animate'
 
 export default function Home() {
   return (
@@ -66,8 +66,8 @@ export default function Home() {
             Aldus PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-        <TestScrollRef />
-        <TestScrollAnimate />
+        {/* <TestScrollRef />
+        <TestScrollAnimate /> */}
       </div>
     </ScrollProvider>
   )

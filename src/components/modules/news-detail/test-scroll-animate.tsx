@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useNewsDetailContext } from '@/components/modules/news-detail/context'
+import { useNewsDetailContext } from '@/components/modules/news-detail/root'
 
 const TestScrollAnimate = () => {
   const { scrollYProgress } = useNewsDetailContext()

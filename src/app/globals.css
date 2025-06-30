@@ -80,10 +80,8 @@ body {
   }
 }
 
-@utility h-screen-no-header {
-  @apply h-[calc(100svh-3.5rem)];
-}
-
-@utility min-h-screen-no-header {
-  @apply min-h-[calc(100svh-3.5rem)];
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useNewsDetailContext } from '@/components/modules/news-detail/context'
+import { useNewsDetailContext } from '@/components/modules/news-detail/root'
 import { cn } from '@/libs/utils/cn'
 
 const NextArticleLink = ({ slug }: { slug: string }) => {

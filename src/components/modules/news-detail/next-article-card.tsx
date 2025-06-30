@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { cn } from '@/libs/utils/cn'
 import Image from 'next/image'
-import { useNewsDetailContext } from '@/components/modules/news-detail/context'
+import { useNewsDetailContext } from '@/components/modules/news-detail/root'
 import { motion, useTransform } from 'motion/react'
 
 type NextArticleCardProps = {
@@ -15,14 +15,14 @@ type NextArticleCardProps = {
 
 const NextArticleCard = ({ title, date, cover, slug }: NextArticleCardProps) => {
   const { isNavigated, isHovered, scrollYProgress, windowHeight, breakpointTop } = useNewsDetailContext()
-  const y = useTransform(scrollYProgress, [0, 1], [windowHeight, breakpointTop - 56])
+  const y = useTransform(scrollYProgress, [0, 1], [windowHeight, breakpointTop])
 
   const router = useRouter()
 
   return (
     <motion.div
       className={cn(
-        'fixed left-0 top-14 w-full',
+        'fixed z-[1] left-0 top-14 w-full',
         windowHeight === 0 ? 'invisible' : '',
         isNavigated ? 'duration-1000 z-10 ease-cs-1 transition-transform' : ''
       )}
@@ -42,7 +42,7 @@ const NextArticleCard = ({ title, date, cover, slug }: NextArticleCardProps) => 
           isHovered ? 'scale-105' : ''
         )}
       >
-        <div className={cn('relative ease-cs-1 duration-1000', isNavigated ? 'h-screen-no-header' : 'h-60')}>
+        <div className={cn('relative ease-cs-1 duration-1000', isNavigated ? 'h-dvh' : 'h-60')}>
           <Image
             src={cover}
             alt={title}

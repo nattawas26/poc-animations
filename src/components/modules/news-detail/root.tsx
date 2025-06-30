@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useRef, useState, ReactNode, RefObject, useEffect } from 'react'
 import { useScroll, type MotionValue } from 'motion/react'
+import { LenisScrollMotion } from '@/components/modules/common/lenis-scroll-motion'
 
 type NewsDetailContextType = {
   isNavigated: boolean
@@ -16,15 +17,17 @@ type NewsDetailContextType = {
 
 const NewsDetailContext = createContext<NewsDetailContextType | undefined>(undefined)
 
-export function NewsDetailProvider({ children }: { children: ReactNode }) {
+const NewsDetailRoot = ({ children }: { children: ReactNode }) => {
   const [isNavigated, setIsNavigated] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [windowHeight, setWindowHeight] = useState<number>(0)
   const [breakpointTop, setBreakpointTop] = useState<number>(0)
 
+  const containerRef = useRef<HTMLDivElement>(null)
   const breakpointRef = useRef<HTMLAnchorElement | null>(null)
 
   const { scrollYProgress } = useScroll({
+    container: containerRef,
     target: breakpointRef,
     offset: ['start end', 'end end'],
   })
@@ -64,15 +67,17 @@ export function NewsDetailProvider({ children }: { children: ReactNode }) {
         breakpointTop,
       }}
     >
-      {children}
+      <LenisScrollMotion wrapperRef={containerRef}>{children}</LenisScrollMotion>
     </NewsDetailContext.Provider>
   )
 }
 
-export function useNewsDetailContext() {
+const useNewsDetailContext = () => {
   const context = useContext(NewsDetailContext)
   if (context === undefined) {
     throw new Error('useNewsDetailContext must be used within a NewsDetailProvider')
   }
   return context
 }
+
+export { NewsDetailRoot, useNewsDetailContext }
