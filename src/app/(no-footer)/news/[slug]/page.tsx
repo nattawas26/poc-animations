@@ -25,7 +25,7 @@ export default async function NewsDetail({ params }: PageProps) {
     <NewsDetailProvider>
       <div className="overflow-hidden">
         <article>
-          <section className="fixed size-full h-svh">
+          <section className="fixed size-full h-screen-no-header">
             <Image
               src={data.cover}
               alt={data.title}
@@ -33,8 +33,8 @@ export default async function NewsDetail({ params }: PageProps) {
               className="object-cover object-center"
             />
           </section>
-          <div className="h-svh relative" />
-          <div className="relative bg-white min-h-svh pb-[27.75rem]">
+          <div className="h-screen-no-header relative" />
+          <div className="relative bg-white min-h-screen-no-header pb-[27.75rem]">
             <section className="py-20">
               <div className="c-container">
                 <div className="space-y-2 mb-10">
@@ -55,7 +55,6 @@ export default async function NewsDetail({ params }: PageProps) {
             slug={nextItemData.slug}
           />
         ) : null}
-        {/* <TestScrollAnimate /> */}
       </div>
     </NewsDetailProvider>
   )

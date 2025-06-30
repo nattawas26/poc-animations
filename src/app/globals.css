@@ -70,12 +70,20 @@ body {
 ::view-transition-new(root) {
   opacity: 0;
   animation: fade-in 0.7s ease forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.4s;
   z-index: 2;
 }
 
 @layer components {
   .c-container {
-    @apply max-w-[61.625rem] px-4 mx-auto;
+    @apply max-w-[61.625rem] w-full px-4 mx-auto;
   }
+}
+
+@utility h-screen-no-header {
+  @apply h-[calc(100svh-3.5rem)];
+}
+
+@utility min-h-screen-no-header {
+  @apply min-h-[calc(100svh-3.5rem)];
 }

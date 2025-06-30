@@ -19,16 +19,15 @@ const NextArticleCard = ({ title, date, cover, slug }: NextArticleCardProps) => 
 
   const router = useRouter()
 
-  console.log('breakpointTop: ', breakpointTop)
-
   return (
     <motion.div
       className={cn(
-        'fixed left-0 top-14 w-full bg-black/5',
+        'fixed left-0 top-14 w-full',
+        windowHeight === 0 ? 'invisible' : '',
         isNavigated ? 'duration-1000 z-10 ease-cs-1 transition-transform' : ''
       )}
       style={{
-        translateY: y,
+        translateY: isNavigated ? 0 : y,
       }}
       onTransitionEnd={() => {
         if (isNavigated) {
@@ -38,12 +37,12 @@ const NextArticleCard = ({ title, date, cover, slug }: NextArticleCardProps) => 
     >
       <div
         className={cn(
-          'bg-white transition-all w-full mx-auto ease-cs-1 duration-500',
+          'transition-all w-full mx-auto ease-cs-1 duration-500 bg-black/5',
           isNavigated ? 'max-w-full duration-1000' : 'max-w-[80rem]',
           isHovered ? 'scale-105' : ''
         )}
       >
-        <div className={cn('relative ease-cs-1 duration-1000', isNavigated ? 'h-[calc(100dvh-3.5rem)]' : 'h-60')}>
+        <div className={cn('relative ease-cs-1 duration-1000', isNavigated ? 'h-screen-no-header' : 'h-60')}>
           <Image
             src={cover}
             alt={title}
