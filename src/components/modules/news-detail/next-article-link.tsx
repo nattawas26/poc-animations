@@ -1,31 +1,21 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { useNewsDetailContext } from '@/components/modules/news-detail/context'
-import { useScroll, useMotionValueEvent } from 'motion/react'
+import { cn } from '@/libs/utils/cn'
 
 const NextArticleLink = ({ slug }: { slug: string }) => {
-  const { setIsNavigated, setAmountY, setIsHovered } = useNewsDetailContext()
-
-  const linkRef = useRef<HTMLAnchorElement>(null)
-
-  const { scrollY } = useScroll()
-
-  const updateDistance = () => {
-    const el = linkRef.current
-    if (!el) return
-    setAmountY(window.innerHeight - el.getBoundingClientRect().top)
-  }
-
-  useEffect(updateDistance, [setAmountY])
-  useMotionValueEvent(scrollY, 'change', updateDistance)
+  const { setIsNavigated, setIsHovered, breakpointRef } = useNewsDetailContext()
 
   return (
     <Link
-      ref={linkRef}
+      ref={breakpointRef}
+      aria-label={`Navigate to ${slug}`}
       href={`/news/${slug}`}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 max-w-[80rem] w-full h-[27.75rem] block"
+      className={cn(
+        'absolute bottom-0 left-1/2 -translate-x-1/2 z-10',
+        'max-w-[80rem] w-full h-[23.5rem] lg:h-[27.75rem] block border-t border-red-500'
+      )}
       onClick={(e) => {
         e.preventDefault()
         setIsNavigated(true)

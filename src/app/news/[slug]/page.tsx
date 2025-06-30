@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { NewsDetailProvider } from '@/components/modules/news-detail/context'
 import { NextArticleCard } from '@/components/modules/news-detail/next-article-card'
 import { NextArticleLink } from '@/components/modules/news-detail/next-article-link'
+import { TestScrollAnimate } from '@/components/modules/news-detail/test-scroll-animate'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -23,37 +24,40 @@ export default async function NewsDetail({ params }: PageProps) {
 
   return (
     <NewsDetailProvider>
-      <article>
-        <section className="fixed size-full h-[calc(100svh-3.5rem)]">
-          <Image
-            src={data.cover}
-            alt={data.title}
-            fill
-            className="object-cover object-center"
-          />
-        </section>
-        <div className="h-[calc(100svh-3.5rem)] relative" />
-        <div className="relative bg-white min-h-[calc(100svh-3.5rem)] pb-[27.75rem]">
-          <section className="py-20">
-            <div className="c-container">
-              <div className="space-y-2 mb-10">
-                <h1 className="text-4xl font-bold">{data.title}</h1>
-                <p className="text-gray-500">{data.category}</p>
-              </div>
-              <div>{parse(data.description)}</div>
-            </div>
+      <div className="overflow-hidden">
+        <article>
+          <section className="fixed size-full h-svh">
+            <Image
+              src={data.cover}
+              alt={data.title}
+              fill
+              className="object-cover object-center"
+            />
           </section>
-          {nextItemData ? <NextArticleLink slug={nextItemData.slug} /> : null}
-        </div>
-      </article>
-      {nextItemData ? (
-        <NextArticleCard
-          title={nextItemData.title}
-          date={nextItemData.date}
-          cover={nextItemData.cover}
-          slug={nextItemData.slug}
-        />
-      ) : null}
+          <div className="h-svh relative" />
+          <div className="relative bg-white min-h-svh pb-[27.75rem]">
+            <section className="py-20">
+              <div className="c-container">
+                <div className="space-y-2 mb-10">
+                  <h1 className="text-4xl font-bold">{data.title}</h1>
+                  <p className="text-gray-500">{data.category}</p>
+                </div>
+                <div>{parse(data.description)}</div>
+              </div>
+            </section>
+            {nextItemData ? <NextArticleLink slug={nextItemData.slug} /> : null}
+          </div>
+        </article>
+        {nextItemData ? (
+          <NextArticleCard
+            title={nextItemData.title}
+            date={nextItemData.date}
+            cover={nextItemData.cover}
+            slug={nextItemData.slug}
+          />
+        ) : null}
+        {/* <TestScrollAnimate /> */}
+      </div>
     </NewsDetailProvider>
   )
 }
