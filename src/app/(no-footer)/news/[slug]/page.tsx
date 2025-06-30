@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { NewsDetailProvider } from '@/components/modules/news-detail/context'
 import { NextArticleCard } from '@/components/modules/news-detail/next-article-card'
 import { NextArticleLink } from '@/components/modules/news-detail/next-article-link'
-import { TestScrollAnimate } from '@/components/modules/news-detail/test-scroll-animate'
 
 type PageProps = {
   params: Promise<{ slug: string }>

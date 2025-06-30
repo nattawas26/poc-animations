@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-
+import { cn } from '@/libs/utils/cn'
 import { ViewTransitions } from 'next-view-transitions'
 import { Header } from '@/components/layout/header'
-import { LenisScroll } from '@/components/layout/lenis-scroll'
 import { ScrollToTop } from '@/components/layout/scroll-to-top'
 
 const geistSans = Geist({
@@ -30,11 +29,10 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <LenisScroll />
-          <ScrollToTop />
+        <body className={cn('antialiased flex flex-col min-h-dvh', geistSans.variable, geistMono.variable)}>
           <Header />
-          <main>{children}</main>
+          {children}
+          <ScrollToTop />
         </body>
       </html>
     </ViewTransitions>
