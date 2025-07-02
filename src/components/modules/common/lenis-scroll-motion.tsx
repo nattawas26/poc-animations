@@ -1,20 +1,17 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Lenis from 'lenis'
 import { cancelFrame, frame } from 'motion/react'
+import Lenis from 'lenis'
 import { useMergedRef } from '@/libs/hooks/use-merged-ref'
+import { usePathname } from 'next/navigation'
 
-const LenisScrollMotion = ({
-  wrapperRef,
-  children,
-}: {
-  wrapperRef?: React.RefObject<HTMLDivElement | null>
-  children?: React.ReactNode
-}) => {
+const LenisScrollMotion = ({ ref, ...props }: React.ComponentProps<'div'>) => {
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const lenisRef = useRef<Lenis | null>(null)
-  const mergedRef = useMergedRef(scrollAreaRef, wrapperRef)
+  const mergedRef = useMergedRef(scrollAreaRef, ref)
+
+  const pathname = usePathname()
 
   useEffect(() => {
     if (!scrollAreaRef.current || typeof window === 'undefined') return
@@ -33,17 +30,15 @@ const LenisScrollMotion = ({
 
     return () => {
       cancelFrame(update)
-      lenisRef.current?.destroy()
     }
-  }, [])
+  }, [pathname])
 
   return (
     <div
       ref={mergedRef}
       className="h-dvh overflow-y-auto scrollbar-hidden"
-    >
-      {children}
-    </div>
+      {...props}
+    />
   )
 }
 

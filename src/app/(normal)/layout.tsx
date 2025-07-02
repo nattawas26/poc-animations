@@ -1,4 +1,4 @@
-import { LenisScrollRaf } from '@/components/modules/common/lenis-scroll-raf'
+import { LenisScrollRoot } from '@/components/modules/common/lenis-scroll-root'
 import { Footer } from '@/components/layout/footer'
 
 export default function NormalLayout({
@@ -8,7 +8,7 @@ export default function NormalLayout({
 }>) {
   return (
     <>
-      <LenisScrollRaf root />
+      <LenisScrollRoot />
       <main className="flex-1">{children}</main>
       <Footer />
     </>

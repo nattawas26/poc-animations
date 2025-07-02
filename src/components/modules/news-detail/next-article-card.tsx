@@ -22,7 +22,8 @@ const NextArticleCard = ({ title, date, cover, slug }: NextArticleCardProps) => 
   return (
     <motion.div
       className={cn(
-        'fixed z-[1] left-0 top-14 w-full',
+        'fixed z-[1] left-0 top-0 w-full',
+        'h-[23.5rem] lg:h-[27.75rem]',
         windowHeight === 0 ? 'invisible' : '',
         isNavigated ? 'duration-1000 z-10 ease-cs-1 transition-transform' : ''
       )}

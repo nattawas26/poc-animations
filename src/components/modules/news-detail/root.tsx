@@ -67,7 +67,12 @@ const NewsDetailRoot = ({ children }: { children: ReactNode }) => {
         breakpointTop,
       }}
     >
-      <LenisScrollMotion wrapperRef={containerRef}>{children}</LenisScrollMotion>
+      <LenisScrollMotion
+        ref={containerRef}
+        className="h-dvh overflow-y-auto scrollbar-hidden"
+      >
+        {children}
+      </LenisScrollMotion>
     </NewsDetailContext.Provider>
   )
 }
